@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual-Shop PY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-color: #ff3131;
+            --secondary-color: #00bfff;
+            --background-dark: #0e1b2c;
+            --background-dark-secondary: #08111d;
+            --text-light: #e0e0e0;
+            --text-medium: #888; /* Un tono ligeramente diferente para el texto secundario */
+            --spacing-small: 0.5rem;
+            --spacing-medium: 1rem;
+            --spacing-large: 1.5rem;
+            --border-radius-small: 5px;
+            --border-radius-medium: 8px;
+            --font-size-regular: 1rem;
+            --font-size-large: 1.1rem;
+            --font-size-h2: 2rem; /* Ligeramente más pequeño para mejor adaptación */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--background-dark-secondary);
+            padding: var(--spacing-medium); /* Reducido un poco el padding vertical */
+            text-align: center;
+        }
+
+        header img {
+            width: 100px; /* Ligeramente más pequeño para mejor espaciado */
+            margin-bottom: var(--spacing-small);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 2.2rem; /* Ligeramente más pequeño para mejor adaptación */
+        }
+
+        nav {
+            text-align: center;
+            margin-top: var(--spacing-medium);
+            background-color: #152841; /* Un tono ligeramente diferente */
+            padding: var(--spacing-small) 0;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: var(--spacing-small) var(--spacing-medium);
+            border-radius: var(--border-radius-small);
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin: 0 var(--spacing-small);
+        }
+
+        nav a:hover {
+            background-color: #2c3e50; /* Un tono ligeramente diferente */
+        }
+
+        section {
+            padding: var(--spacing-large);
+            text-align: center;
+        }
+
+        section h2 {
+            color: var(--secondary-color);
+            font-size: var(--font-size-h2);
+            margin-bottom: var(--spacing-medium);
+        }
+
+        #nosotros p {
+            font-size: var(--font-size-large);
+            margin-bottom: var(--spacing-large);
+            color: var(--text-medium);
+            line-height: 1.7; /* Ligeramente más espacio entre líneas para mejor lectura */
+        }
+
+        #nosotros strong {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .ventajas-title {
+            font-size: 1.5rem; /* Ligeramente más pequeño */
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: var(--spacing-large);
+            margin-bottom: var(--spacing-small);
+        }
+
+        ul.ventajas {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--spacing-medium);
+        }
+
+        ul.ventajas li {
+            font-size: var(--font-size-regular);
+            display: flex;
+            align-items: center;
+            background-color: #152841; /* Un tono ligeramente diferente */
+            padding: var(--spacing-medium);
+            border-radius: var(--border-radius-medium);
+            width: fit-content;
+        }
+
+        ul.ventajas li i {
+            color: var(--secondary-color);
+            margin-right: var(--spacing-small);
+            font-size: 1.2rem; /* Ligeramente más pequeño */
+        }
+
+        .catalogo {
+            text-align: center;
+        }
+
+        .galeria {
+            display: grid; /* Usando grid para una disposición más controlada */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajuste para más flexibilidad en el tamaño de las imágenes */
+            gap: var(--spacing-medium);
+            justify-content: center;
+            margin-top: var(--spacing-medium);
+        }
+
+        .galeria img {
+            width: 100%;
+            height: auto; /* Ajustar altura automáticamente para mantener la proporción */
+            object-fit: cover; /* Asegurar que la imagen cubra el contenedor sin deformarse */
+            border: 2px solid var(--secondary-color); /* Borde más delgado */
+            border-radius: var(--border-radius-small);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.03); /* Efecto hover más sutil */
+        }
+
+        .redes {
+            text-align: center;
+        }
+
+        .redes h2 {
+            margin-bottom: var(--spacing-medium);
+        }
+
+        .redes a {
+            margin: 0 var(--spacing-medium);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.3rem; /* Ligeramente más pequeño */
+            transition: color 0.3s ease;
+        }
+
+        .redes a:hover {
+            color: var(--secondary-color);
+        }
+
+        .redes i {
+            margin-right: var(--spacing-small);
+        }
+
+        .precios table {
+            margin: var(--spacing-large) auto;
+            border-collapse: collapse;
+            width: 90%; /* Ocupar un poco más de ancho en el contenedor */
+            max-width: 600px; /* Limitar el ancho máximo para mejor legibilidad en pantallas grandes */
+            border-radius: var(--border-radius-medium);
+            overflow: hidden;
+            font-size: var(--font-size-regular);
+        }
+
+        .precios th, .precios td {
+            border: 1px solid var(--secondary-color);
+            padding: var(--spacing-small);
+            text-align: center;
+        }
+
+        .precios th {
+            background-color: #152841; /* Un tono ligeramente diferente */
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .precios tr:nth-child(even) {
+            background-color: #1e3b5f; /* Un tono ligeramente diferente */
+        }
+
+        .contacto {
+            text-align: center;
+        }
+
+        .contacto h2 {
+            margin-bottom: var(--spacing-medium);
+        }
+
+        .contacto a {
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            padding: var(--spacing-medium) var(--spacing-large); /* Ajuste del padding */
+            text-decoration: none;
+            border-radius: var(--border-radius-medium);
+            font-size: var(--font-size-large);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .contacto a:hover {
+            background-color: #d63031; /* Un tono ligeramente diferente */
+        }
+
+        footer {
+            text-align: center;
+            padding: var(--spacing-medium);
+            background-color: var(--background-dark-secondary);
+            color: var(--text-medium);
+            font-size: var(--font-size-small);
+            margin-top: var(--spacing-large);
+        }
+
+        /* Media query para pantallas más pequeñas */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header img {
+                margin-right: 0;
+            }
+
+            nav {
+                margin-top: var(--spacing-small);
+            }
+
+            nav a {
+                display: block;
+                margin: var(--spacing-small) auto;
+                width: 80%; /* Ocupar más ancho en pantallas pequeñas */
+                text-align: center;
+            }
+
+            ul.ventajas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            ul.ventajas li {
+                width: 90%;
+                text-align: center;
+            }
+
+            .galeria {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajuste para pantallas más pequeñas */
+            }
+
+            .precios table {
+                font-size: 0.85rem; /* Fuente más pequeña en tablas en móvil */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/logo.jpeg" alt="Logo de Virtual-Shop PY">
+        <h1>Virtual-Shop PY</h1>
+    </header>
+
+    <nav>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#precios">Precios</a>
+        <a href="#redes">Redes Sociales</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section id="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <p>En <strong>Virtual-Shop PY</strong>, somos más que una tienda online de camisetas para hombres: somos una comunidad apasionada por el estilo, la comodidad y la autenticidad. Nuestro compromiso va más allá de vender ropa, buscamos brindarte una experiencia de compra cercana, amigable y totalmente confiable. Estamos en Asunción, pero llegamos a vos estés donde estés.</p>
+        <div class="ventajas-title">Ventajas de comprar con nosotros</div>
+        <ul class="ventajas">
+            <li><i class="fas fa-tshirt"></i>Diseños exclusivos y varoniles</li>
+            <li><i class="fas fa-dollar-sign"></i>Precios competitivos</li>
+            <li><i class="fas fa-shipping-fast"></i>Envíos rápidos y seguros</li>
+            <li><i class="fas fa-user-check"></i>Atención personalizada</li>
+        </ul>
+    </section>
+
+    <section id="catalogo" class="catalogo">
+        <h2>Catálogo</h2>
+        <div class="galeria">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo1.jpg" alt="Camiseta 1">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo2.jpg" alt="Camiseta 2">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo3.jpg" alt="Camiseta 3">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo4.jpg" alt="Camiseta 4">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo5.jpg" alt="Camiseta 5">
+            <img src="https://raw.githubusercontent.com/VirtualshopPY/Virtual-shop/main/catalogo6.jpg" alt="Camiseta 6">
+        </div>
+    </section>
+
+    <section id="precios" class="precios">
+        <h2>Precios</h2>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+            </tr>
+            <tr>
+                <td>Camiseta Clásica</td>
+                <td>Gs. 45.000</td>
+            </tr>
+            <tr>
+                <td>Camiseta Estampada</td>
+                <td>Gs. 55.000</td>
+            </tr>
+            <tr>
+                <td>Camiseta Premium</td>
+                <td>Gs. 65.000</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="redes" class="redes">
+        <h2>Seguinos en nuestras redes</h2>
+        <a href="https://www.instagram.com/virtualshopp_py" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i>Instagram</a>
+        <a href="https://www.facebook.com/share/1EFkKg4MGk" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i>Facebook</a>
+        <a href="https://www.tiktok.com/@virtualshopppy" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i>TikTok</a>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <h2>¡Contactanos!</h2>
+        <a href="https://wa.me/595981331242" target="_blank" rel="noopener noreferrer">Enviar mensaje por WhatsApp</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Virtual-Shop PY - Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
